@@ -1,8 +1,8 @@
 # MERN-Docker
 
-This is a demo docker that shows the CRUD function of the MERN stack - in one docker container.
+This is a demo that dockerize the MERN stack - in one docker container set.
 
-I just create the docker wrapper for the application. The code are based on the [MERN-Stack-CRUD](https://github.com/CodAffection/MERN-Stack-CRUD) by CodAffection.
+I just create the docker wrapper for the application. The code are based on the [MERN-Stack-CRUD](https://github.com/CodAffection/MERN-Stack-CRUD) by CodAffection. The application demonstrates the end-to-end CRUD (create, read, update, and delete) functionarity.
 
 ## Run the demo
 
