@@ -19,4 +19,4 @@ $ docker-compose up
 
 4. (Optional) You can access API by opening the browser and goto `localhost:4000`
 
-5. (Optional) You can access database content by accessing `localhost:27017` using a MongoDB client
+5. (Optional) You can access database content by accessing `mongodb://localhost:27017` using a MongoDB client (e.g. [Mongo Compass](https://www.mongodb.com/products/compass))
