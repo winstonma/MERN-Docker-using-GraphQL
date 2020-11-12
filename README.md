@@ -10,8 +10,8 @@ In this demo, I just created the docker wrapper for the application. The code is
 
 2. Run the follow command in command prompt
 ```
-$ git clone https://github.com/winstonma/MERN-Docker.git
-$ cd MERN-Docker
+$ git clone https://github.com/winstonma/MERN-Docker-using-GraphQL.git
+$ cd MERN-Docker-using-GraphQL
 $ docker-compose up
 ```
 
