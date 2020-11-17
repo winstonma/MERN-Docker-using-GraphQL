@@ -1,26 +1,32 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
+
+import 'semantic-ui-css/semantic.min.css';
 import './App.css';
-import { Provider } from "react-redux";
-import PostMessages from "./components/PostMessages";
-import { store } from "./actions/store";
-import { Container, AppBar, Typography } from "@material-ui/core";
-import ButterToast,{ POS_RIGHT,POS_TOP } from "butter-toast";
+
+import { AuthProvider } from './context/auth';
+import AuthRoute from './util/AuthRoute';
+
+import MenuBar from './components/MenuBar';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import SinglePost from './pages/SinglePost';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Container maxWidth="lg">
-        <AppBar position="static" color="inherit">
-          <Typography
-            variant="h2"
-            align="center">
-            Post Box
-          </Typography>
-        </AppBar>
-        <PostMessages />
-        <ButterToast position={{vertical:POS_TOP,horizontal:POS_RIGHT}}/>
-      </Container>
-    </Provider>
+    <AuthProvider>
+      <Router>
+        <Container>
+          <MenuBar />
+          <Route exact path="/" component={Home} />
+          <AuthRoute exact path="/login" component={Login} />
+          <AuthRoute exact path="/register" component={Register} />
+          <Route exact path="/posts/:postId" component={SinglePost} />
+        </Container>
+      </Router>
+    </AuthProvider>
   );
 }
 

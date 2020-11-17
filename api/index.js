@@ -1,17 +1,24 @@
-require('./db')
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const { ApolloServer, PubSub } = require('apollo-server');
+const mongoose = require('mongoose');
 
-const PORT = 4000;
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
+const { MONGODB } = require('./config.js');
 
-var postMessageRoutes = require('./controllers/postMessageController');
-const { connection } = require('mongoose');
+const pubsub = new PubSub();
 
-var app = express()
-app.use(bodyParser.json())
-app.use(cors());
-//app.use(cors({origin:'http://localhost:80'}))
-app.listen(PORT, () => console.log(`Server started at : ${PORT}`))
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req, pubsub })
+});
 
-app.use('/postMessages', postMessageRoutes)
+mongoose
+  .connect(MONGODB, { useNewUrlParser: true })
+  .then(() => {
+    console.log('MongoDB Connected');
+    return server.listen({ port: 5000 });
+  })
+  .then((res) => {
+    console.log(`Server running at ${res.url}`);
+  });
